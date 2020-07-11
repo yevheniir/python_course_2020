@@ -31,6 +31,10 @@ def game(bot, player_choice):
 def r():
     return render_template('index.html')
 
+@app.route("/list")
+def list():
+    return 'this is list!!!'
+
 @app.route("/game")
 def hello():        
     return render_template("start.html")
