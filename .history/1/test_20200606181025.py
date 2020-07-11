@@ -1,0 +1,42 @@
+name1 = "Влад"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name1 = "Влад"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name1 = "Влад"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+name2 = "Яромир"
+
+
+
+print(name1)
+print(name2)
+print(name1)
+print(name2)
+print(name1)
+print(name2)
+
+print(name1)
+print(name2)

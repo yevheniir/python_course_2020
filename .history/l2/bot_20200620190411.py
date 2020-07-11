@@ -1,0 +1,93 @@
+# # Work with Python 3.6
+import discord, os, json, time
+
+# TOKEN = os.environ.get('TOKEN')
+
+client = discord.Client()
+
+def save():
+    with open(os.path.dirname(os.path.realpath(__file__)) + "/save.json", 'w') as file:
+        json.dump(people, file)
+
+people = {"zheka": "камінь", "боб": "бумага"}
+
+with open(os.path.dirname(os.path.realpath(__file__)) + "/save.json", 'r') as file:
+    people = json.load(file)
+
+@client.event
+async def on_message(message):
+    # we do not want the bot to reply to itself
+    if message.author == client.user:
+        return
+    
+    if message.content == "!start_battle":
+        people[message.author.id] = False
+        message.channel.send("Бій почався, чекаємо приєднання ще 1 гравця")
+        
+    if message.content == "!join_battle":
+        if len(people) == 1:
+            people[message.author.id] = ""
+            message.channel.send("Виклик прийнято, бій починається. Напишить камінь ножниці чи бумагу")
+            
+    if message.content.startswith('!answer'):
+        if len(people) == 2:
+            people[message.author.id] = message.content.replace('!answer ', '')
+            
+            if all(people.values()):
+                # LOGIC!!!
+                message.channel.send("В")
+                
+    
+    if message.author.id in people:
+        answer = message.content
+
+
+# answer 
+
+
+
+    if message.content.startswith('!register'):
+        target = None
+        for i, n in enumerate(people):
+            if n['id'] == message.author.id:
+                target = i
+        if not bool(target):                
+            people.append({"id": message.author.id, "name": message.content.replace("!register", '')})
+        else:
+            people[target] = {"id": message.author.id, "name": message.content.replace("!register", '')}
+            
+        save()
+        msg = 'Hello ' + message.author.mention + " Який твій улюблений фільм?"
+        await message.channel.send(msg) 
+
+    if message.content.startswith('!answer'):
+        target = None
+        for i, n in enumerate(people):
+            if n['id'] == message.author.id:
+                target = i
+
+        try:
+            people[target]['film'] = message.content.replace('!answer', '')
+        except Exception:
+            people.append({"id": message.author.id, "film": message.content.replace('!answer', '')})
+
+        save()
+        msg = 'Відповідь збережено'
+        await message.channel.send(msg) 
+
+    if message.content.startswith('!hello'):
+        msg = '!hello ' + message.author.mention
+        await message.channel.send(msg)
+
+    if message.content.startswith('!show_all'):
+        msg = 'People: \n' + '\n'.join(map(str, people))
+        await message.channel.send(msg)
+
+@client.event
+async def on_ready():
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
+
+client.run(TOKEN)

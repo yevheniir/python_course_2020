@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Help</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/css_game.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://i.ytimg.com/vi/Jxbu80okI_U/maxresdefault.jpg" type="image/png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+        </ul>
+    </header>
+    <div id="line"></div>
+    <p id="logo_text">Rock,paper,scissors</p>
+    <div class="game">
+        <div class="score">
+            <ul>
+                <li>User
+                <li id="user">0</li>
+                </li>
+                <li>:</li>
+                <li id="bot">0
+                <li>Computer</li>
+                </li>
+            </ul>
+        </div>
+        <div class="icons">
+
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRRCB7PMA9A3u-_S-6wQiAlGhWtyYL4t9ztOQ&usqp=CAU"
+                id="Rock" title="Rock" alt="">
+            <img src="https://hacktoberfest.lingonsaft.com/images/scissors.png" title="Scissors" id="Scissors" alt="">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQWRqJ9Wffm4SI4GRFYsIXa7-VZAoUpct6bWw&usqp=CAU"
+                id="Paper" title="Paper" alt="">
+
+        </div>
+        <div class="remind">
+            <p>Please, choose the move</p>
+        </div>
+    </div>
+    <div id="line"></div>
+    <img src="https://www.pxwall.com/wp-content/uploads/2018/08/Cyberpunk-2077-scenes.png" alt="">
+    <div id="line"></div>
+    <footer>
+        <ul>
+            <li>Produced by Matsenko Volodimyr</li>
+        </ul>
+    </footer>
+    <script>
+        var list = [];
+        var list2 = ['Rock', 'Scissors', 'Paper'];
+        var bot = 0;
+        var player = 0;
+        var value = null;
+        function sleep(ms) {
+            ms += new Date().getTime();
+            while (new Date() < ms) { }
+        }
+        function randomInteger(min, max) {
+            let rand = min - 0.5 + Math.random() * (max - min + 1);
+            return Math.round(rand);
+        }
+        $('#Rock').click(function () {
+
+            list = [];
+            list.push('Rock');
+            sleep(1000);
+            value = randomInteger(0, 2);
+            $('#Rock').hide('1000');
+            alert("Bot chose" + '\u00A0' + list2[value].toLowerCase() + '.');
+            if (list[0] == list2[value]) {
+                alert("Draw (͡° ͜ʖ ͡°)");
+            }
+            else if (list[0] == "Rock" && list2[value] == "Paper" || list[0] == "Scissors" && list2[value] == "Rock" || list[0] == "Paper" && list2[value] == "Scissors") {
+                alert("You lose!(>_<)");
+                bot++;
+                $('#bot').text(String(bot));
+            }
+            else if (list[0] == "Paper" && list2[value] == "Rock" || list[0] == "Rock" && list2[value] == "Scissors" || list[0] == "Scissors" && list2[value] == "Paper") {
+                alert("You won!(￣ω￣)");
+                player++;
+                $('#user').text(String(player));
+
+            }
+            $('#Rock').show('1000');
+        });
+        $('#Scissors').click(function () {
+            list = [];
+            list.push('Scissors');
+            value = randomInteger(0, 2);
+            $('#Scissors').hide('1000');
+            alert("Bot chose" + '\u00A0' + list2[value].toLowerCase() + '.');
+            if (list[0] == list2[value]) {
+
+                alert("Draw (͡° ͜ʖ ͡°)");
+
+            }
+            else if (list[0] == "Rock" && list2[value] == "Paper" || list[0] == "Scissors" && list2[value] == "Rock" || list[0] == "Paper" && list2[value] == "Scissors") {
+                alert("You lose!(>_<)");
+                bot++;
+                $('#bot').text(String(bot));
+
+            }
+            else if (list[0] == "Paper" && list2[value] == "Rock" || list[0] == "Rock" && list2[value] == "Scissors" || list[0] == "Scissors" && list2[value] == "Paper") {
+                player++;
+                $('#user').text(String(player));
+                alert("You won!(￣ω￣)");
+
+
+            }
+            $('#Scissors').show('1000');
+        });
+        $('#Paper').click(function () {
+            list = [];
+            list.push('Paper');
+            value = randomInteger(0, 2);
+            $('#Paper').hide('1000');
+            alert("Bot chose" + '\u00A0' + list2[value].toLowerCase() + '.');
+            if (list[0] == list2[value]) {
+
+                alert("Draw (͡° ͜ʖ ͡°)");
+            }
+            else if (list[0] == "Rock" && list2[value] == "Paper" || list[0] == "Scissors" && list2[value] == "Rock" || list[0] == "Paper" && list2[value] == "Scissors") {
+                alert("You lose!(>_<)");
+                bot++;
+                $('#bot').text(String(bot));
+            }
+            else if (list[0] == "Paper" && list2[value] == "Rock" || list[0] == "Rock" && list2[value] == "Scissors" || list[0] == "Scissors" && list2[value] == "Paper") {
+                alert("You won!(￣ω￣)");
+                player++;
+                $('#user').text(String(player));
+            }
+            $('#Paper').show('1000');
+        });
+
+
+
+    </script>
+</body>
+
+</html>

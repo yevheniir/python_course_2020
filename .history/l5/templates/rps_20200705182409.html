@@ -1,0 +1,12 @@
+Hi game is over
+
+Winner: {{ winner }}
+player_choice: {{ player_choice }}
+computer_choice: {{ computer_choice }}
+
+  {% for segment in users %}
+    <tr>
+      <td>{{segment}}</td>
+      <td>{{segment_details['{{segment}}']}}</td>
+    </tr>
+  {% endfor %}

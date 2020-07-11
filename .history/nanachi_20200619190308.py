@@ -1,0 +1,15 @@
+import telebot
+
+bot = telebot.TeleBot('776550937:AAELEr0c3H6dM-9QnlDD-0Q0Fcd65pPyAiM')
+    
+@bot.message_handler(content_types=['text'])
+def send_text(message):
+    if message.text[0].lower() == "н" and check_all(message.text):
+        bot.send_message(message.chat.id, message.text + message.text[1:] )
+
+bot.polling()
+
+def check_all(string, later):
+    for l in string:
+       if l != later:
+           return False 
